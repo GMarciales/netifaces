@@ -19,10 +19,10 @@ else:
     except ImportError:
         import __builtin__
         builtins = __builtin__
-        
+
     output = getattr(builtins, 'print')
-    
-__version__ = "0.10.4"
+
+__version__ = "0.10.4.1"
 
 # Disable hard links, otherwise building distributions fails on OS X
 try:
@@ -97,7 +97,7 @@ class my_build_ext(build_ext):
                             result = True
                         if status != 0:
                             result = False
-                        
+
             finally:
                 os.dup2(mystdout, 1)
                 os.dup2(mystderr, 2)
@@ -123,7 +123,7 @@ class my_build_ext(build_ext):
             results = {}
 
         self.conftestidx = 0
-        
+
         output("checking for getifaddrs...", end='')
 
         result = results.get('have_getifaddrs', None)
@@ -187,7 +187,7 @@ class my_build_ext(build_ext):
               sin.sin_family = AF_INET;
               sin.sin_port = 0;
               sin.sin_addr.s_addr = htonl (INADDR_LOOPBACK);
-              
+
               ret = getnameinfo ((struct sockaddr *)&sin, sizeof (sin),
                                  buffer, sizeof (buffer),
                                  NULL, 0,
@@ -352,7 +352,7 @@ class my_build_ext(build_ext):
             # lengths, because they're in the sa_len field on just about
             # everything but Linux.
             output("checking which sockaddr_xxx structs are defined...", end='')
-            
+
             result = results.get('have_sockaddrs', None)
             if result is not None:
                 cached = '(cached)'
@@ -377,7 +377,7 @@ class my_build_ext(build_ext):
                     #include <net/if.h>
                     #include <netinet/in.h>
                     %(includes)s
-                    
+
                     int main (void) {
                       struct sockaddr_%(sockaddr)s sa;
                       return 0;
@@ -389,7 +389,7 @@ class my_build_ext(build_ext):
 
                     if self.test_build(testrig):
                         result.append(sockaddr)
-                
+
             if result:
                 output('%s. %s' % (' '.join(result), cached))
                 for sockaddr in result:
@@ -515,25 +515,21 @@ readme_path = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                            'README.rst')
 long_desc = open(readme_path, 'r').read()
 
-setup (name='netifaces',
+setup (name='gns3-netifaces',
        version=__version__,
        zip_safe=True,
-       description="Portable network interface information.",
+       description="Portable network interface information. GNS3 fork for solving a Python 3 issue",
        license="MIT License",
        long_description=long_desc,
-       author='Alastair Houghton',
-       author_email='alastair@alastairs-place.net',
-       url='https://bitbucket.org/al45tair/netifaces',
+       author='GNS3',
+       author_email='developers@gns3.net',
+       url='https://github.com/GNS3/netifaces',
        classifiers=[
     'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: MIT License',
     'Topic :: System :: Networking',
     'Programming Language :: Python',
-    'Programming Language :: Python :: 2',
-    'Programming Language :: Python :: 2.5',
-    'Programming Language :: Python :: 2.6',
-    'Programming Language :: Python :: 2.7',
     'Programming Language :: Python :: 3',
     ],
        ext_modules=[iface_mod])

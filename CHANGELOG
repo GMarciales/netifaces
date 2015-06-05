@@ -1,3 +1,7 @@
+2015-06-05  Version 0.10.4.1
+
+	* GNS3 fork for Python3 compatible version on PyPi
+
 2014-05-19	Version 0.10.4
 
 	* Fixed a problem with multi-part Netlink messages on Linux.

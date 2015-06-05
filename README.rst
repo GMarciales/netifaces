@@ -1,3 +1,13 @@
+WARNING
+========
+
+This a fork distributed on PyPi until this issue on upstream is solved:
+https://bitbucket.org/al45tair/netifaces/issue/13/0104-install-is-broken-on-python-3x
+
+The original module is here:
+https://bitbucket.org/al45tair/netifaces
+
+
 netifaces 0.10.4
 ================
 

@@ -7,6 +7,8 @@ https://bitbucket.org/al45tair/netifaces/issue/13/0104-install-is-broken-on-pyth
 The original module is here:
 https://bitbucket.org/al45tair/netifaces
 
+**Starting with GNS3 1.4 we stop using netifaces in favor of psutil**
+
 
 netifaces 0.10.4
 ================
